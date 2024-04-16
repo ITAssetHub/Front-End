@@ -1,0 +1,52 @@
+.logo-navbar {
+    font-family: 'Kodchasan', sans-serif;
+    font-size: 40px;
+    padding-left: 45px;
+    color: white;
+}
+
+#logo {
+    width: 56.27px;
+    height: 54px;
+  }
+
+p {
+    color: white;
+}
+
+#organizacoes {
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+    font-size: medium;
+    color: black;
+}
+
+#organizacoes:hover {
+    background-color: gray;
+}
+
+.navbar {
+    background: black;
+    color: black;
+}
+
+.user {
+    text-align: right;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+button.navbar-toggler.collapsed {
+    background: white !important;
+}
+
+.side-menu-text {
+    font-size: x-large;
+    color: white;
+}
+
+.side-menu-title {
+    font-size: x-large;
+    color: white;
+}
