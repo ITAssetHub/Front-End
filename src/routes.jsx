@@ -1,17 +1,18 @@
 import React from "react";
 
-import { Route, redirect } from "react-router-dom";
+import { Navigate, Route, redirect } from "react-router-dom";
 import { isAuthenticated } from "./auth"
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-    <Route {...rest} render={props => (
-        isAuthenticated() ? (
-            <Component {...props} />
-        ) : (
-            redirect({ to: "/", state: {from: props.location}})
-        )
-    )}
-    />
+const validacaoUsuario = () => {
+    return !!localStorage.getItem('usuarioValidado')
+}
+
+const PrivateRoute = ({ children }) => {
+    if (validacaoUsuario() == false) {
+        return <Navigate to="/"/>
+    }
+
+    return children;
 }
 
 export default PrivateRoute;

@@ -8,10 +8,16 @@ export const isAuthenticated = async (username, password) => {
         body: JSON.stringify({ username, hash: password }),
       });
       console.log(response.status + ": Chamada a api")
-      return response;
+
+      if (response.status == 200) {
+        console.log("Usuario logado")
+        return true
+      } else {
+        console.log("Usuário inválido!")
+      return false;
+      }
     } catch (error) {
       console.error('Erro ao enviar requisição: ', error);
       throw new Error('Erro ao enviar requisição');
     }
   };
-  

@@ -14,22 +14,21 @@ function Login() {
 
     try {
       // Chame a função isAuthenticated aqui com username e password
-      const isAuthenticatedResult = await isAuthenticated(usuario, password);
+      const usuarioValidado = await isAuthenticated(usuario, password);
 
-      if (isAuthenticatedResult.ok) {
-        navigate("/home")
-        setMessage('Usuário válido');
-        console.log(message);
-      } else {
-        const errorText = await isAuthenticatedResult.text();
-        setMessage(`Erro: ${errorText}`);
-        console.log(message);
-      }
-    } catch (error) {
-      console.error('Erro ao enviar requisição: ', error);
-      setMessage('Erro ao enviar requisição');
-      console.log(message);
+    if (usuarioValidado == true) {
+      // Se o usuário for validado, defina o valor 'true' no localStorage
+      localStorage.setItem('usuarioValidado', 'true');
+      navigate("/home");
+    } else {
+      // Se a autenticação falhar, exiba uma mensagem de erro
+      setMessage("Usuário ou senha inválidos");
     }
+
+  } catch (error) {
+    console.error('Erro ao enviar requisição: ', error);
+    setMessage("Erro ao enviar requisição: " + error.message);
+  }
   };
 
   return (
