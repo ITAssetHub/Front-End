@@ -1,6 +1,6 @@
 export const isAuthenticated = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:8080/api/usuario/validar_usuario', {
+      const response = await fetch('http://localhost:8080/api/v1/usuario/validar_usuario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

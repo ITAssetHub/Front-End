@@ -22,7 +22,7 @@ function Login() {
       navigate("/home");
     } else {
       // Se a autenticação falhar, exiba uma mensagem de erro
-      setMessage("Usuário ou senha inválidos");
+      setMessage("Usuário ou senha inválidos"); 
     }
 
   } catch (error) {

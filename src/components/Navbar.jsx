@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faChartPie, faHardDrive, faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faChartPie, faHardDrive, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../css/navbar.css';
@@ -17,7 +17,7 @@ const Barra_de_Navegacao = () => {
         <>
             <Navbar expand={false} className="mb-3 navbar">
                 <Container fluid className="d-flex align-items-center justify-content-start">
-                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-false`} />
+                    <Navbar.Toggle><img src='./src/assets/Expand_Tab.png'/></Navbar.Toggle>
                     <Navbar.Brand><h1 className='logo-navbar m-0'> <img src=".\src\assets\logo.png" alt="Logo" id="logo" /> ASSET HUB</h1></Navbar.Brand>
                     <p className='m-0'>Organização: </p>
                     <DropdownButton
@@ -48,40 +48,32 @@ const Barra_de_Navegacao = () => {
                                     title={<span className="ms-2 side-menu-text"><FontAwesomeIcon icon={faHardDrive} /> Hosts</span>}
                                     id={`offcanvasNavbarDropdown-hosts`}
                                 >
-                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action4">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">
-                                        Something else here
-                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="#action3">Hosts Virtuais</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action4">Hardware</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action5">Ambientes</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action5">Sites</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
                                     title={<span className="ms-2 side-menu-text"><FontAwesomeIcon icon={faCog} /> Configurações</span>}
                                     id={`offcanvasNavbarDropdown-configuracoes`}
                                 >
-                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action4">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action5">
-                                        Something else here
-                                    </NavDropdown.Item>
+                                    <NavDropdown.Item href="#action3">Organizações</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action4">Usuários</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action5">Grupos</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action5">Sobre</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                         <DropdownButton
-                            title={<span className="ms-2 user"><FontAwesomeIcon icon={faCircleUser} className='icone-user'/>  Jhon Doe</span>}
+                            title={<span className="ms-2 user"><FontAwesomeIcon icon={faCircleUser} className='icone-user'/>  Henrique Oliveira</span>}
                             id="user"
                             variant="secondary"
                             data-bs-theme="dark"
                             className='ms-auto'
                         >
                             <Dropdown.Divider />
-                            <Dropdown.Item eventKey="4">Logout</Dropdown.Item>
+                            <Dropdown.Item eventKey="4"><FontAwesomeIcon icon={faPowerOff} />  Logout</Dropdown.Item>
                         </DropdownButton>
                 </Container>
             </Navbar>

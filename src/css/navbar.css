@@ -1,6 +1,6 @@
 .logo-navbar {
     font-family: 'Kodchasan', sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     padding-left: 45px;
     color: white;
 }
@@ -12,6 +12,7 @@
 
 p {
     color: white;
+    padding-left: 30px;
 }
 
 #organizacoes {

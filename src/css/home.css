@@ -7,3 +7,93 @@
     justify-content: space-between;
     margin-bottom: 2em;
 }
+
+.servidores {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2em;
+    justify-content: center;
+    margin-top: 56px;
+}
+
+.x {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.servidores p {
+    font-family: 'Kodchasan', sans-serif;
+    font-weight: bold;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.servidores > div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 32px;
+}
+
+.valor{
+    font-size: 50px;
+}
+
+.chave {
+    font-size: 30px;
+}
+
+#icon {
+    font-size: 30px;
+    color: gray;
+}
+
+.servidores-fisicos {
+    width: 25%;
+}
+
+.total-servidores {
+    width: 20%;
+}
+
+.servidores-linux {
+    width: 17.5%;
+}
+
+.servidores-windows {
+    width: 17.5%;
+}
+
+.graficos {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    justify-content: center;
+    margin-top: 32px;
+    gap: 2em;
+}
+
+.graficos > div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Kodchasan', sans-serif;
+    position: relative;
+    margin-top: 20px;
+}
+
+.grafico-so {
+    min-height: 500px; /* Defina uma altura mínima */
+}
+
+.grafico-so > div > div.echarts-legend {
+    position: absolute;
+    bottom: 20px; /* Ajuste a posição da legenda */
+    left: 50%; /* Centralize a legenda */
+    transform: translateX(-50%);
+}
+
+.graficos > div > h4 {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px; /* Ajuste conforme necessário */
+    margin-bottom: 10px; /* Ajuste conforme necessário */
+}
