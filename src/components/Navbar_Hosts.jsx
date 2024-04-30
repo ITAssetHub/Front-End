@@ -61,8 +61,8 @@ const Filtro = () => {
               <Form.Label>Hardware:</Form.Label>
               <div>
                 <Form.Control as="select">
-                  <option></option>
-                  <option>Hardware Cadastrado <FontAwesomeIcon icon={faSortDown} /></option>
+                  <option disabled selected value="">Selecione uma opção</option>
+                  <option>Hardware Cadastrado</option>
                   <option>Organização Cadastrada</option>
                   <option>Ambiente Cadastrado</option>
                   <option>Site Cadastrado</option>
@@ -73,7 +73,7 @@ const Filtro = () => {
               <Form.Label>Ambiente:</Form.Label>
               <div>
                 <Form.Control as="select">
-                  <option></option>
+                  <option disabled selected value="">Selecione uma opção</option>
                   <option>Hardware Cadastrado</option>
                   <option>Organização Cadastrada</option>
                   <option>Ambiente Cadastrado</option>
@@ -88,7 +88,7 @@ const Filtro = () => {
               <Form.Label>Organização:</Form.Label>
               <div >
                 <Form.Control as="select">
-                  <option></option>
+                  <option disabled selected value="">Selecione uma opção</option>
                   <option>Hardware Cadastrado</option>
                   <option>Organização Cadastrada</option>
                   <option>Ambiente Cadastrado</option>
@@ -100,7 +100,7 @@ const Filtro = () => {
               <Form.Label>Site:</Form.Label>
               <div>
                 <Form.Control as="select">
-                  <option></option>
+                  <option disabled selected value="">Selecione uma opção</option>
                   <option>Hardware Cadastrado</option>
                   <option>Organização Cadastrada</option>
                   <option>Ambiente Cadastrado</option>

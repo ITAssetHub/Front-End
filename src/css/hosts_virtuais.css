@@ -29,6 +29,11 @@ th.label {
     border: solid 2px gray;
 }
 
+.button-tabela:hover {
+    background-color: rgb(194, 193, 193);
+    border: solid 2px gray;
+}
+
 .descricao {
     display: flex;
     flex-direction: row;
