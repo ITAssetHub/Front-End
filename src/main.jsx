@@ -9,6 +9,7 @@ import PrivateRoute from './routes.jsx';
 
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
+import Hosts_Virtuais from './pages/Hosts_Virtuais.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,12 @@ const router = createBrowserRouter([
     path: "/home",
     element: <PrivateRoute>
       <Home />
+    </PrivateRoute>
+  },
+  {
+    path: "/hosts-virtuais",
+    element: <PrivateRoute>
+      <Hosts_Virtuais />
     </PrivateRoute>
   },
   {

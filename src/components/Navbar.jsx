@@ -21,6 +21,14 @@ const Barra_de_Navegacao = () => {
         window.location.href = '/';
     };
 
+    const hostsVirtuais = () => {
+        window.location.href = '/hosts-virtuais';
+    };
+
+    const dashBoard = () => {
+        window.location.href = '/home';
+    };
+
     return (
         <>
             <Navbar expand={false} className="mb-3 navbar">
@@ -51,12 +59,12 @@ const Barra_de_Navegacao = () => {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3 side-menu-item">
-                                <Nav.Link href="#action1" className="ms-2 side-menu-text"><FontAwesomeIcon icon={faChartPie} />  Dashboard</Nav.Link>
+                                <Nav.Link href="#action1" className="ms-2 side-menu-text" onClick={dashBoard}><FontAwesomeIcon icon={faChartPie} />  Dashboard</Nav.Link>
                                 <NavDropdown
                                     title={<span className="ms-2 side-menu-text"><FontAwesomeIcon icon={faHardDrive} /> Hosts</span>}
                                     id={`offcanvasNavbarDropdown-hosts`}
                                 >
-                                    <NavDropdown.Item href="#action3">Hosts Virtuais</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action3" onClick={hostsVirtuais}>Hosts Virtuais</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4">Hardware</NavDropdown.Item>
                                     <NavDropdown.Item href="#action5">Ambientes</NavDropdown.Item>
                                     <NavDropdown.Item href="#action5">Sites</NavDropdown.Item>

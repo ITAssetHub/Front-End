@@ -1,0 +1,28 @@
+.filtro {
+    margin-top: 2em;
+}
+
+.acao-select {
+    width: 40%; /* Defina a largura desejada */
+}
+
+.dropdown-acao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 300px;
+    height: 30px;
+}
+
+.dropdown-acao select {
+    margin-left: 20px;
+}
+
+.acao-icon {
+    color: gray;
+}
+
+.search:active {
+    border: none;
+    background-color: white;
+}
