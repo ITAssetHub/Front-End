@@ -13,6 +13,14 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../css/navbar.css';
 
 const Barra_de_Navegacao = () => {
+
+    const handleLogout = () => {
+        // Limpa o localStorage ao fazer logout
+        localStorage.removeItem('authenticated');
+        // Redireciona o usuário para a página de login
+        window.location.href = '/';
+    };
+
     return (
         <>
             <Navbar expand={false} className="mb-3 navbar">
@@ -73,7 +81,7 @@ const Barra_de_Navegacao = () => {
                             className='ms-auto'
                         >
                             <Dropdown.Divider />
-                            <Dropdown.Item eventKey="4"><FontAwesomeIcon icon={faPowerOff} />  Logout</Dropdown.Item>
+                            <Dropdown.Item eventKey="4" onClick={handleLogout}><FontAwesomeIcon icon={faPowerOff} />  Logout</Dropdown.Item>
                         </DropdownButton>
                 </Container>
             </Navbar>

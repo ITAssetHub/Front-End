@@ -4,11 +4,12 @@ import { Navigate, Route, redirect } from "react-router-dom";
 import { isAuthenticated } from "./auth"
 
 const validacaoUsuario = () => {
-    return !!localStorage.getItem('usuarioValidado')
+    return !!localStorage.getItem('authenticated')
+    //return !!localStorage.getItem('access_token')
 }
 
 const PrivateRoute = ({ children }) => {
-    if (validacaoUsuario() == false) {
+    if (!validacaoUsuario()) {
         return <Navigate to="/"/>
     }
 

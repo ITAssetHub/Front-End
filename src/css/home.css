@@ -79,6 +79,10 @@
     font-family: 'Kodchasan', sans-serif;
     position: relative;
     margin-top: 20px;
+    display: flex; /* Adiciona display flex para centralizar os itens */
+    flex-direction: column; /* Define a direção do flex como coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
 }
 
 .grafico-so {
@@ -94,6 +98,7 @@
 
 .graficos > div > h4 {
     border-bottom: 1px solid black;
-    padding-bottom: 10px; /* Ajuste conforme necessário */
-    margin-bottom: 10px; /* Ajuste conforme necessário */
+    padding-bottom: 0; /* Reduz o espaçamento inferior do h4 */
+    margin-bottom: 0; /* Reduz a margem inferior do h4 */
+    margin-top: 0; /* Remove a margem superior do h4 */
 }

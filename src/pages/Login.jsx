@@ -15,15 +15,16 @@ function Login() {
     try {
       // Chame a função isAuthenticated aqui com username e password
       const usuarioValidado = await isAuthenticated(usuario, password);
+      // localStorage.setItem('usuarioValidado', usuarioValidado);
 
-    if (usuarioValidado == true) {
+    if (usuarioValidado) {
       // Se o usuário for validado, defina o valor 'true' no localStorage
-      localStorage.setItem('usuarioValidado', 'true');
+      localStorage.setItem('authenticated', true);
       navigate("/home");
     } else {
       // Se a autenticação falhar, exiba uma mensagem de erro
       setMessage("Usuário ou senha inválidos"); 
-    }
+    } 
 
   } catch (error) {
     console.error('Erro ao enviar requisição: ', error);
