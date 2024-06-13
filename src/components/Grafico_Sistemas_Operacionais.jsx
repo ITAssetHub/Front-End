@@ -1,10 +1,42 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import { useQuery } from "react-query";
+import { listarHosts } from '../api';
 
 function Grafico_Sistemas_Operacionais() {
     const chartRef = useRef(null);
 
+    const { data, isLoading, error } = useQuery(
+        "query-hosts",
+        listarHosts,
+        {
+            retry: 5,
+            refetchInterval: 120000,
+        }
+    );
+
     useEffect(() => {
+        if (!data) return; // Retorna se não houver dados ainda
+
+        // Processar os dados para contar os sistemas operacionais
+        const sistemasOperacionais = [];
+        data.forEach((host) => {
+            try {
+                const hostInfo = JSON.parse(host[1]);
+                const sistemaOperacional = hostInfo.systemInfo.OS_Name;
+                const sistemaExistente = sistemasOperacionais.find(item => item.nome_sistema_operacional === sistemaOperacional);
+                
+                if (sistemaExistente) {
+                    sistemaExistente.qtd++;
+                } else {
+                    sistemasOperacionais.push({ nome_sistema_operacional: sistemaOperacional, qtd: 1 });
+                }
+            } catch (error) {
+                console.error(`Erro ao processar host: ${error.message}`);
+            }
+        });
+
+        // Configurar e atualizar o gráfico com os novos dados
         const myChart = echarts.init(chartRef.current);
         const option = {
             tooltip: {
@@ -13,8 +45,8 @@ function Grafico_Sistemas_Operacionais() {
             legend: {
                 show: true,
                 top: '85%',
-                orient: 'horizontal', // Orientação da legenda
-                bottom: 0, // Posição da legenda
+                orient: 'horizontal',
+                bottom: 0,
                 left: 'center',
             },
             series: [
@@ -35,12 +67,11 @@ function Grafico_Sistemas_Operacionais() {
                     labelLine: {
                         show: false
                     },
-                    data: [
-                        { value: 1550, name: 'Red Hat Enterprise Linux 9' },
-                        { value: 3750, name: 'Red Hat Enterprise Linux 8' },
-                        { value: 2200, name: 'Oracle Linux 8' },
-                        { value: 2500, name: 'Windows Server 2022' }
-                    ]
+                    // Usar os dados dinâmicos de sistemasOperacionais
+                    data: sistemasOperacionais.map(item => ({
+                        value: item.qtd,
+                        name: item.nome_sistema_operacional,
+                    }))
                 }
             ]
         };
@@ -50,7 +81,8 @@ function Grafico_Sistemas_Operacionais() {
         return () => {
             myChart.dispose();
         };
-    }, []);
+
+    }, [data]); // Executar o useEffect sempre que 'data' mudar
 
     return <div ref={chartRef} style={{ width: '100%', height: '500px' }} />;
 }
