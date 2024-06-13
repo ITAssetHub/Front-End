@@ -10,6 +10,7 @@ import PrivateRoute from './routes.jsx';
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
 import Hosts_Virtuais from './pages/Hosts_Virtuais.jsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter([
   {
@@ -34,8 +35,12 @@ const router = createBrowserRouter([
   }
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )

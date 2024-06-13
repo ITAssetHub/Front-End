@@ -5,6 +5,8 @@ import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import "../css/hosts_virtuais.css";
+import { useQuery } from 'react-query';
+import { listarHosts } from '../api';
 
 function Hosts_Virtuais() {
 
@@ -36,6 +38,29 @@ const Tabela = () => {
         setSelectAll(!selectAll);
     };
 
+    const {data, isLoading, error} = useQuery(
+        "query-hosts",
+        listarHosts,
+        {
+            retry: 5,
+            refetchInterval: 120000,
+        }
+    );
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error fetching data: {error.message}</div>;
+    }
+
+    console.log(data);
+
+    if (!data || !Array.isArray(data)) {
+        return <div>No data available</div>;
+    }
+
     return (
         <Table striped bordered hover className='tabela'>
             <thead>
@@ -56,29 +81,29 @@ const Tabela = () => {
                 </tr>
             </thead>
             <tbody>
-                {[1, 2, 3, 4, 5].map((row, index) => (
+                {data.map((host, index) => (
                     <tr key={index}>
                         <td>
                             <input
                                 type="checkbox"
-                                checked={checkboxes[index]}
+                                checked={checkboxes[index] || false}
                                 onChange={() => handleCheckboxChange(index)}
                             />
                         </td>
-                        <td>Hostname {row}</td>
-                        <td>Sistema Operacional {row}</td>
-                        <td>Ambiente {row}</td>
-                        <td>Hardware {row}</td>
-                        <td>Último Relatório {row}</td>
+                        <td>{host[0]}</td> {/* Nome do host */}
+                        <td>{JSON.parse(host[1]).systemInfo.OS_Name}</td> {/* Sistema Operacional */}
+                        <td>--</td>
+                        <td>--</td>
+                        <td>{JSON.parse(host[1]).date.day}/{JSON.parse(host[1]).date.month}/{JSON.parse(host[1]).date.year} {JSON.parse(host[1]).date.hour}:{JSON.parse(host[1]).date.minutes}:{JSON.parse(host[1]).date.seconds}</td>
+
                         <td className='descricao'>
-                            <span className='texto'>Descrição {row}</span>
+                            <span className='texto'>Descrição {index + 1}</span>
                             <div className='button-table'>
                                 <Button className='button-tabela'>
                                     <FontAwesomeIcon icon={faChevronRight} className='button-icon'/>
                                 </Button>
                             </div>
                         </td>
-                        
                     </tr>
                 ))}
             </tbody>
