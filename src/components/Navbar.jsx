@@ -28,6 +28,10 @@ const Barra_de_Navegacao = () => {
     const hardware = () => {
         window.location.href = '/hardware';
     };
+    
+    const ambiente = () => {
+        window.location.href = '/ambiente';
+    };
 
     const dashBoard = () => {
         window.location.href = '/home';
@@ -70,7 +74,7 @@ const Barra_de_Navegacao = () => {
                                 >
                                     <NavDropdown.Item href="#action3" onClick={hostsVirtuais}>Hosts Virtuais</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4" onClick={hardware}>Hardware</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action5">Ambientes</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action5" onClick={ambiente}>Ambientes</NavDropdown.Item>
                                     <NavDropdown.Item href="#action5">Sites</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
