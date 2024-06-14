@@ -6,8 +6,20 @@ import { faHardDrive, faDesktop } from '@fortawesome/free-solid-svg-icons';
 import Grafico_Sistemas_Operacionais from '../components/Grafico_Sistemas_Operacionais';
 import Grafico_Servidores from '../components/Grafico_Servidores';
 import Grafico_Servidores_Ambiente from '../components/Grafico_Servidores_Ambiente';
+import { useQuery } from "react-query";
+import { listarHosts } from '../api';
+import { qtdLinux, qtdWindows, totalServidoresVirtuais } from '../services/servidoresService';
 
 function Home() {
+
+    const { data } = useQuery(
+        "query-hosts",
+        listarHosts,
+        {
+            retry: 5,
+            refetchInterval: 120000,
+        }
+    );
 
     return (
         <div className='home'>
@@ -16,7 +28,7 @@ function Home() {
             <div className='servidores'>
                 <div className='servidores-windows'>
                     <div className='x'>
-                        <p className='valor'>50</p>
+                        <p className='valor'>{qtdWindows(data)}</p>
                         <img src="./src/assets/windows.png" className='serverIcon'/>
                     </div>
                     <p className='chave'>Windows</p>
@@ -24,7 +36,7 @@ function Home() {
                 </div>
                 <div className='servidores-linux'>
                     <div className='x'>
-                        <p className='valor'>100</p>
+                        <p className='valor'>{qtdLinux(data)}</p>
                         <img src="./src/assets/linux.png" className='serverIcon'/>
                     </div>
                     <p className='chave'>Linux</p>
@@ -32,7 +44,7 @@ function Home() {
                 </div>
                 <div className='total-servidores'>
                     <div className='x'>
-                        <p className='valor'>150</p>
+                        <p className='valor'>{totalServidoresVirtuais(data)}</p>
                         <FontAwesomeIcon icon={faDesktop} id='icon'/>
                     </div>
                     <p className='chave'>Servidores</p>
