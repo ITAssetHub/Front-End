@@ -24,6 +24,10 @@ const Barra_de_Navegacao = () => {
     const hostsVirtuais = () => {
         window.location.href = '/hosts-virtuais';
     };
+    
+    const hardware = () => {
+        window.location.href = '/hardware';
+    };
 
     const dashBoard = () => {
         window.location.href = '/home';
@@ -65,7 +69,7 @@ const Barra_de_Navegacao = () => {
                                     id={`offcanvasNavbarDropdown-hosts`}
                                 >
                                     <NavDropdown.Item href="#action3" onClick={hostsVirtuais}>Hosts Virtuais</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action4">Hardware</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action4" onClick={hardware}>Hardware</NavDropdown.Item>
                                     <NavDropdown.Item href="#action5">Ambientes</NavDropdown.Item>
                                     <NavDropdown.Item href="#action5">Sites</NavDropdown.Item>
                                 </NavDropdown>

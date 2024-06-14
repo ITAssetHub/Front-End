@@ -10,6 +10,7 @@ import PrivateRoute from './routes.jsx';
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
 import Hosts_Virtuais from './pages/Hosts_Virtuais.jsx';
+import Hardware from './pages/Hardware.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter([
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
     path: "/hosts-virtuais",
     element: <PrivateRoute>
       <Hosts_Virtuais />
+    </PrivateRoute>
+  },
+  {
+    path: "/hardware",
+    element: <PrivateRoute>
+      <Hardware />
     </PrivateRoute>
   },
   {
