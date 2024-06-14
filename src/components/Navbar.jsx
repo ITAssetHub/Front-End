@@ -32,6 +32,10 @@ const Barra_de_Navegacao = () => {
     const ambiente = () => {
         window.location.href = '/ambiente';
     };
+    
+    const site = () => {
+        window.location.href = '/site';
+    };
 
     const dashBoard = () => {
         window.location.href = '/home';
@@ -75,7 +79,7 @@ const Barra_de_Navegacao = () => {
                                     <NavDropdown.Item href="#action3" onClick={hostsVirtuais}>Hosts Virtuais</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4" onClick={hardware}>Hardware</NavDropdown.Item>
                                     <NavDropdown.Item href="#action5" onClick={ambiente}>Ambientes</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action5">Sites</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action5" onClick={site}>Sites</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
                                     title={<span className="ms-2 side-menu-text"><FontAwesomeIcon icon={faCog} /> Configurações</span>}

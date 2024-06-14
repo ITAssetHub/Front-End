@@ -12,6 +12,7 @@ import Home from './pages/Home.jsx'
 import Hosts_Virtuais from './pages/Hosts_Virtuais.jsx';
 import Hardware from './pages/Hardware.jsx';
 import Ambiente from './pages/Ambiente.jsx';
+import Site from './pages/Site.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter([
@@ -41,6 +42,12 @@ const router = createBrowserRouter([
     path: "/ambiente",
     element: <PrivateRoute>
       <Ambiente />
+    </PrivateRoute>
+  },
+  {
+    path: "/site",
+    element: <PrivateRoute>
+      <Site />
     </PrivateRoute>
   },
   {
