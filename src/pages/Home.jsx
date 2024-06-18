@@ -7,7 +7,7 @@ import Grafico_Sistemas_Operacionais from '../components/Grafico_Sistemas_Operac
 import Grafico_Servidores from '../components/Grafico_Servidores';
 import Grafico_Servidores_Ambiente from '../components/Grafico_Servidores_Ambiente';
 import { useQuery } from "react-query";
-import { listarHosts } from '../api';
+import { listarHosts, qtdHardware } from '../api';
 import { qtdLinux, qtdWindows, totalServidoresVirtuais } from '../services/servidoresService';
 
 function Home() {
@@ -15,6 +15,15 @@ function Home() {
     const { data } = useQuery(
         "query-hosts",
         listarHosts,
+        {
+            retry: 5,
+            refetchInterval: 120000,
+        }
+    );
+
+    const { data: dataHardware } = useQuery(
+        "query-qtd-hardware",
+        qtdHardware,
         {
             retry: 5,
             refetchInterval: 120000,
@@ -52,7 +61,7 @@ function Home() {
                 </div>
                 <div className='servidores-fisicos'>
                     <div className='x'> 
-                        <p className='valor'>2</p>
+                        <p className='valor'>{dataHardware}</p>
                         <FontAwesomeIcon icon={faHardDrive} id='icon'/>
                     </div>
                     <p className='chave'>Hardwares</p>
