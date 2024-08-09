@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Barra_de_Navegacao from '../components/Navbar';
-import Filtro from '../components/Filtro_Hosts';
+import Filtro_Hosts from '../components/Filtro_Hosts';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ function Hosts_Virtuais() {
             <Barra_de_Navegacao />
             <div className='hosts'>
                 <h1>Hosts</h1>
-                <Filtro />
+                <Filtro_Hosts />
                 <Tabela />
             </div>
         </div>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faMagnifyingGlass, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import "../css/navbar_hosts.css";
 
-const Filtro = () => {
+const Filtro_Ambiente = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -40,4 +40,4 @@ const Filtro = () => {
   );
 };
 
-export default Filtro;
+export default Filtro_Ambiente;

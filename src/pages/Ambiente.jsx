@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Barra_de_Navegacao from '../components/Navbar';
-import Filtro from '../components/Filtro_Ambiente';
+import Filtro_Ambiente from '../components/Filtro_Ambiente';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ function Ambiente() {
             <Barra_de_Navegacao />
             <div className='hosts'>
                 <h1>Ambiente</h1>
-                <Filtro />
+                <Filtro_Ambiente />
                 <Tabela />
             </div>
         </div>

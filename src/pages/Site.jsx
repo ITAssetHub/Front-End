@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Barra_de_Navegacao from '../components/Navbar';
-import Filtro from '../components/Filtro_Site';
+import Filtro_Site from '../components/Filtro_Site';
 import { Table, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ function Site() {
             <Barra_de_Navegacao />
             <div className='hosts'>
                 <h1>Site</h1>
-                <Filtro />
+                <Filtro_Site />
                 <Tabela />
             </div>
         </div>

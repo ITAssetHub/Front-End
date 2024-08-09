@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../styles.css';
+import styles from '../styles.module.css';
 import { useNavigate } from 'react-router-dom';
 import { isAuthenticated } from '../auth';
 
@@ -33,38 +33,38 @@ function Login() {
   };
 
   return (
-    <div className='login'>
-      <div className="texto-login">
-        <h1 className='logo'> <img src=".\src\assets\logo.png" alt="Logo" id="logo" /> ASSET HUB</h1>
-        <h3 className='texto'>Bem-Vindo</h3>
+    <div className={styles.login}>
+      <div className={styles.texto_login}>
+        <h1 className={styles.logo}> <img src=".\src\assets\logo.png" alt="Logo" id="logo" /> ASSET HUB</h1>
+        <h3 className={styles.texto}>Bem-Vindo</h3>
       </div>
-      <div className="container">
-        <div className="container-login">
-          <div className="wrap-login">
-            <form className="login-form" onSubmit={handleSubmit}>
-              <span className="login-form-title">Acesse sua conta</span>
-              <div className="wrap-input">
+      <div className={styles.container}>
+        <div className={styles.container_login}>
+          <div className={styles.wrap_login}>
+            <form className={styles.login_form} onSubmit={handleSubmit}>
+              <span className={styles.login_form_title}>Acesse sua conta</span>
+              <div className={styles.wrap_input}>
                 <input
-                  className={usuario !== "" ? "has-val input" : "input"} 
+                  className={`${usuario !== "" ? styles.has_val : ""} ${styles.input}`}
                   type="text" 
                   value={usuario}
                   onChange={e => setUsuario(e.target.value)}               
                 />
-                <span className="focus-input" data-placeholder="Usuario"></span>
+                <span className={styles.focus_input} data-placeholder="Usuario"></span>
               </div>
 
-              <div className="wrap-input">
+              <div className={styles.wrap_input}>
                 <input 
-                  className={password !== "" ? "has-val input" : "input"} 
+                  className={`${password !== "" ? styles.has_val : ""} ${styles.input}`} 
                   type="password" 
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                 />
-                <span className="focus-input" data-placeholder="Senha"></span>
+                <span className={styles.focus_input} data-placeholder="Senha"></span>
               </div>
 
-              <div className="container-login-form-btn">
-                <button type="submit" className="login-form-btn">
+              <div className={styles.container_login_form_btn}>
+                <button type="submit" className={styles.login_form_btn}>
                   Log In
                 </button>
               </div>

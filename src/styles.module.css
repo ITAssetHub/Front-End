@@ -9,7 +9,7 @@
     margin: 0 auto;
 }
 
-.container-login {
+.container_login {
 
     display: flex;
 
@@ -18,7 +18,7 @@
     padding: 15px;
 }
 
-.wrap-login {
+.wrap_login {
     width: 390px;
     background-color: white;
     border-radius: 26px;
@@ -26,11 +26,11 @@
     padding: 77px 55px 33px 55px;
 }
 
-.login-form{
+.login_form{
     width: 100%;
 }
 
-.login-form-title {
+.login_form_title {
     display: block;
     font-size: 30px;
     color: black;
@@ -39,7 +39,7 @@
     text-align: center;
 }
 
-.wrap-input {
+.wrap_input {
     font-family: "Istok Web", sans-serif;
     width: 100%;
     position: relative;
@@ -60,7 +60,7 @@
     padding: 0 5px;
 }
 
-.focus-input {
+.focus_input {
     position: absolute;
     display: block;
     width: 100%;
@@ -71,7 +71,7 @@
     color: #adadad;
 }
 
-.focus-input::before {
+.focus_input::before {
     content: "";
     display: block;
     position: absolute;
@@ -90,7 +90,7 @@
     background: linear-gradient(to left, #adadad, #FF204E);
   }
 
-  .focus-input::after {
+  .focus_input::after {
     font-size: 15px;
     color: #999999;
     line-height: 1.2;
@@ -111,30 +111,30 @@
     outline: 0;
   }
   
-  .input:focus + .focus-input::after {
+  .input:focus + .focus_input::after {
     top: -15px;
   }
   
-  .input:focus + .focus-input::before {
+  .input:focus + .focus_input::before {
     width: 100%;
   }
   
-  .has-val + .focus-input::after {
+  .has_val + .focus_input::after {
     top: -15px;
   }
   
-  .has-val + .focus-input::before {
+  .has_val + .focus-input::before {
     width: 100%;
   }
   
-  .container-login-form-btn {
+  .container_login_form_btn {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-bottom: 13px;
 }
 
-.login-form-btn {
+.login_form_btn {
     font-family: "Kodchasan", sans-serif;
     font-size: 15px;
     border: none;
@@ -149,11 +149,11 @@
     background-color: #FF204E;
 }
 
-.login-form-btn:hover {
+.login_form_btn:hover {
     cursor: pointer;
 }
 
-.login-form-btn > a {
+.login_form-btn > a {
     display: flex;
     justify-content: center;
     align-items: center;
