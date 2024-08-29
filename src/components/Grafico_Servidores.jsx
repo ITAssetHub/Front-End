@@ -21,7 +21,7 @@ function Grafico_Servidores() {
                 {
                     name: 'Total de Servidores por Site',
                     type: 'pie',
-                    radius: ['40%', '75%'],
+                    radius: ['50%', '90%'],
                     avoidLabelOverlap: false,
                     label: {
                         show: false,

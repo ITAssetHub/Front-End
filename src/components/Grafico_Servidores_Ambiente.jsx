@@ -21,7 +21,7 @@ function Grafico_Servidores_Ambiente() {
                 {
                     name: 'Total de Servidores por Ambiente',
                     type: 'pie',
-                    radius: ['50%', '90%'],
+                    radius: ['60%', '100%'],
                     avoidLabelOverlap: false,
                     label: {
                         show: false,
