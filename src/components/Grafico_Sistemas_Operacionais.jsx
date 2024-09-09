@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
 import { useQuery } from "react-query";
-import { listarHosts } from '../api';
+import { qtdServidores } from '../api'; // Importe a função correta
 
 function Grafico_Sistemas_Operacionais() {
     const chartRef = useRef(null);
 
     const { data, isLoading, error } = useQuery(
-        "query-hosts",
-        listarHosts,
+        "query-qtd-servidores",
+        qtdServidores,
         {
             retry: 5,
             refetchInterval: 120000,
@@ -18,23 +18,11 @@ function Grafico_Sistemas_Operacionais() {
     useEffect(() => {
         if (!data) return; // Retorna se não houver dados ainda
 
-        // Processar os dados para contar os sistemas operacionais
-        const sistemasOperacionais = [];
-        data.forEach((host) => {
-            try {
-                const hostInfo = JSON.parse(host[1]);
-                const sistemaOperacional = hostInfo.systemInfo.OS_Name;
-                const sistemaExistente = sistemasOperacionais.find(item => item.nome_sistema_operacional === sistemaOperacional);
-                
-                if (sistemaExistente) {
-                    sistemaExistente.qtd++;
-                } else {
-                    sistemasOperacionais.push({ nome_sistema_operacional: sistemaOperacional, qtd: 1 });
-                }
-            } catch (error) {
-                console.error(`Erro ao processar host: ${error.message}`);
-            }
-        });
+        // Processar os dados para o gráfico
+        const sistemasOperacionais = [
+            { nome_sistema_operacional: 'Linux', qtd: data.Linux_Hosts },
+            { nome_sistema_operacional: 'Windows', qtd: data.Windows_Hosts },
+        ];
 
         // Configurar e atualizar o gráfico com os novos dados
         const myChart = echarts.init(chartRef.current);
@@ -67,7 +55,6 @@ function Grafico_Sistemas_Operacionais() {
                     labelLine: {
                         show: false
                     },
-                    // Usar os dados dinâmicos de sistemasOperacionais
                     data: sistemasOperacionais.map(item => ({
                         value: item.qtd,
                         name: item.nome_sistema_operacional,

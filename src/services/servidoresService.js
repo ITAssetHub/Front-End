@@ -1,47 +1,33 @@
-export function qtdLinux(dados) {
+import { qtdServidores } from "../api";
 
-    if (!dados) return 0;
 
-    let qtdLinux = 0;
+export async function qtdLinux() {
+    try {
+        const servidores = await qtdServidores();
+        const servidoresLinux = servidores?.Linux_Hosts;
 
-    dados.forEach((host) => {
-        try {
-            const hostInfo = JSON.parse(host[1]);
-            const sistemaOperacional = hostInfo.systemInfo.OS_Type;
-            
-            if (sistemaOperacional === "Linux") {
-                qtdLinux++;
-            }
-        } catch (error) {
-            console.error(`Erro ao processar host: ${error.message}`);
-            // Trate o erro conforme necessário
-        }
-    });
+        console.log("Quantidade de servidores Linux:", servidoresLinux);
 
-    return qtdLinux;
+        return servidoresLinux;
+    } catch (error) {
+        console.error("Erro ao obter a quantidade de servidores Linux:", error);
+        return 0;
+    }
 }
 
-export function qtdWindows(dados) {
+export async function qtdWindows(dados) {
 
-    if (!dados) return 0;
+    try {
+        const servidores = await qtdServidores();
+        const servidoresWindows = servidores?.Windows_Hosts;
 
-    let qtdWindows = 0;
+        console.log("Quantidade de servidores Windows:", servidoresWindows);
 
-    dados.forEach((host) => {
-        try {
-            const hostInfo = JSON.parse(host[1]);
-            const sistemaOperacional = hostInfo.systemInfo.OS_Type;
-            
-            if (sistemaOperacional === "Windows") {
-                qtdWindows++;
-            }
-        } catch (error) {
-            console.error(`Erro ao processar host: ${error.message}`);
-            // Trate o erro conforme necessário
-        }
-    });
-
-    return qtdWindows;
+        return servidoresWindows;
+    } catch (error) {
+        console.error("Erro ao obter a quantidade de servidores Windows:", error);
+        return 0;
+    }
 }
 
 export function totalServidoresVirtuais(dados) {

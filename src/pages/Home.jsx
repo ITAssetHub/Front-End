@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Barra_de_Navegacao from '../components/Navbar'
 import "../css/home.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +11,27 @@ import { listarHosts, qtdHardware } from '../api';
 import { qtdLinux, qtdWindows, totalServidoresVirtuais } from '../services/servidoresService';
 
 function Home() {
+
+    const [linux, setLinux] = useState(null);
+    const [windows, setWindows] = useState(null);
+
+    useEffect(() => {
+        const fetchLinux = async () => {
+            const result = await qtdLinux();
+            setLinux(result);
+        };
+
+        fetchLinux();
+    }, []);
+
+    useEffect(() => {
+        const fetchWindows = async () => {
+            const result = await qtdWindows();
+            setWindows(result);
+        };
+
+        fetchWindows();
+    }, []);
 
     const { data } = useQuery(
         "query-hosts",
@@ -37,7 +58,7 @@ function Home() {
             <div className='servidores'>
                 <div className='servidores-windows'>
                     <div className='x'>
-                        <p className='valor'>{qtdWindows(data)}</p>
+                        <p className='valor'>{windows}</p>
                         <img src="./src/assets/windows.png" className='serverIcon'/>
                     </div>
                     <p className='chave'>Windows</p>
@@ -45,7 +66,7 @@ function Home() {
                 </div>
                 <div className='servidores-linux'>
                     <div className='x'>
-                        <p className='valor'>{qtdLinux(data)}</p>
+                        <p className='valor'>{linux}</p>
                         <img src="./src/assets/linux.png" className='serverIcon'/>
                     </div>
                     <p className='chave'>Linux</p>
@@ -53,7 +74,7 @@ function Home() {
                 </div>
                 <div className='total-servidores'>
                     <div className='x'>
-                        <p className='valor'>{totalServidoresVirtuais(data)}</p>
+                        <p className='valor'>{linux + windows}</p>
                         <FontAwesomeIcon icon={faDesktop} id='icon'/>
                     </div>
                     <p className='chave'>Servidores</p>
@@ -61,7 +82,7 @@ function Home() {
                 </div>
                 <div className='servidores-fisicos'>
                     <div className='x'> 
-                        <p className='valor'>{dataHardware}</p>
+                        <p className='valor'>{dataHardware?.Hardware_Count}</p>
                         <FontAwesomeIcon icon={faHardDrive} id='icon'/>
                     </div>
                     <p className='chave'>Hardwares</p>

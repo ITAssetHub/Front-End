@@ -22,31 +22,41 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <PrivateRoute>
+    element: 
+
+    <PrivateRoute>
       <Home />
     </PrivateRoute>
   },
   {
     path: "/hosts-virtuais",
-    element: <PrivateRoute>
+    element: 
+
+    <PrivateRoute>
       <Hosts_Virtuais />
     </PrivateRoute>
   },
   {
     path: "/hardware",
-    element: <PrivateRoute>
+    element: 
+    
+    <PrivateRoute>
       <Hardware />
     </PrivateRoute>
   },
   {
     path: "/ambiente",
-    element: <PrivateRoute>
+    element: 
+    
+    <PrivateRoute>
       <Ambiente />
     </PrivateRoute>
   },
   {
     path: "/site",
-    element: <PrivateRoute>
+    element: 
+    
+    <PrivateRoute>
       <Site />
     </PrivateRoute>
   },
