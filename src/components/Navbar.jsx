@@ -94,7 +94,7 @@ const Barra_de_Navegacao = () => {
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
                         <DropdownButton
-                            title={<span className="ms-2 user"><FontAwesomeIcon icon={faCircleUser} className='icone-user'/>  Henrique Oliveira</span>}
+                            title={<span className="ms-2 user"><FontAwesomeIcon icon={faCircleUser} className='icone-user'/>  Admin</span>}
                             id="user"
                             variant="secondary"
                             data-bs-theme="dark"

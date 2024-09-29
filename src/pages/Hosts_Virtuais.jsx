@@ -37,6 +37,8 @@ const Tabela = () => {
         }
     );
 
+    console.log("Dados recebidos da API:", data);
+
     useEffect(() => {
         if (data) {
             setCheckboxes(new Array(data.length).fill(false));
@@ -56,11 +58,11 @@ const Tabela = () => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div>Carregando...</div>;
     }
 
     if (error) {
-        return <div>Error fetching data: {error.message}</div>;
+        return <div>Erro ao buscar dados: {error.message}</div>;
     }
 
     if (!data || !Array.isArray(data)) {
@@ -80,6 +82,10 @@ const Tabela = () => {
         }).replace(',', ''); // Remove a vírgula
     };
 
+    const hostDetails = () => {
+        window.location.href = '/host-details';
+    };
+
     return (
         <Table striped bordered hover className='tabela'>
             <thead>
@@ -96,16 +102,16 @@ const Tabela = () => {
                     <th className='label'>Ambiente</th>
                     <th className='label'>Hardware</th>
                     <th className='label'>Último Relatório</th>
-                    <th className='label' style={{display: "flex", justifyContent: "center"}}>Descrição</th>
+                    <th className='label' style={{ display: "flex", justifyContent: "center" }}>Descrição</th>
                 </tr>
             </thead>
             <tbody>
                 {data.map((host, index) => {
                     // Formatar a data
-                    const formattedDate = host[4] ? formatDate(host[4]) : "--";
+                    const formattedDate = host.last_report_date ? formatDate(host.last_report_date) : "--";
 
                     return (
-                        <tr key={index}>
+                        <tr key={host.uuid}> {/* Use UUID como key para evitar duplicatas */}
                             <td>
                                 <input
                                     type="checkbox"
@@ -113,16 +119,16 @@ const Tabela = () => {
                                     onChange={() => handleCheckboxChange(index)}
                                 />
                             </td>
-                            <td>{host[0]}</td> {/* Nome do host */}
-                            <td>{host[1] || "Desconhecido"}</td> {/* Sistema Operacional */}
-                            <td>{host[2] || "--"}</td> {/* Ambiente */}
-                            <td>{host[3] || "--"}</td> {/* Hardware */}
+                            <td>{host.hostname}</td> {/* Nome do host */}
+                            <td>{host.os_pretty_name || "Desconhecido"}</td> {/* Sistema Operacional */}
+                            <td>{host.ambiente || "--"}</td> {/* Ambiente */}
+                            <td>{host.hardware || "--"}</td> {/* Hardware */}
                             <td>{formattedDate}</td> {/* Último Relatório */}
                             <td className='descricao'>
-                                <span className='texto'>{host[5]}</span>
+                                <span className='texto'>{host.description || "--"}</span>
                                 <div className='button-table'>
-                                    <Button className='button-tabela'>
-                                        <FontAwesomeIcon icon={faChevronRight} className='button-icon'/>
+                                    <Button className='button-tabela' variant="secondary" onClick={hostDetails}>
+                                        <FontAwesomeIcon icon={faChevronRight} className='button-icon' />
                                     </Button>
                                 </div>
                             </td>

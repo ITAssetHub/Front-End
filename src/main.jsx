@@ -14,6 +14,7 @@ import Hardware from './pages/Hardware.jsx';
 import Ambiente from './pages/Ambiente.jsx';
 import Site from './pages/Site.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Host_Details from './pages/Host_Details.jsx';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
     
     <PrivateRoute>
       <Site />
+    </PrivateRoute>
+  },
+  {
+    path: "/host-details",
+    element: 
+    
+    <PrivateRoute>
+      <Host_Details />
     </PrivateRoute>
   },
   {
