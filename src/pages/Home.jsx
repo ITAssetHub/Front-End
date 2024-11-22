@@ -9,6 +9,7 @@ import Grafico_Servidores_Ambiente from '../components/Grafico_Servidores_Ambien
 import { useQuery } from "react-query";
 import { listarHosts, qtdHardware } from '../api';
 import { qtdLinux, qtdWindows, totalServidoresVirtuais } from '../services/servidoresService';
+import CPUsageDashboard from '../components/CPU_Usage_Dashboard';
 
 function Home() {
 
@@ -50,6 +51,10 @@ function Home() {
             refetchInterval: 120000,
         }
     );
+
+    const lowUsageServers = ['Server3', 'Server6', 'Server9'];
+    const attentionServers = ['Server2', 'Server5', 'Server7', 'Server10'];
+    const criticalServers = ['Server1', 'Server4', 'Server8'];
 
     return (
         <div className='home'>
@@ -102,6 +107,39 @@ function Home() {
                     <h4>Total de Servidores por Ambiente</h4>
                     <Grafico_Servidores_Ambiente />
                 </div>
+            </div>
+
+            <div>
+
+                <div style={{justifyContent: 'center', textAlign: 'center'}}>
+
+                    <CPUsageDashboard lowUsageServers={lowUsageServers}
+                        attentionServers={attentionServers}
+                        criticalServers={criticalServers}
+                    />
+
+                    <h6 style={{justifyContent: 'center', textAlign: 'center'}}>Servidores Críticos:</h6>
+
+                    {criticalServers.length > 0 ? (
+                        <span style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', marginBottom: '20px' }}>
+                            {criticalServers.map((server, index) => (
+                            <a
+                                key={index}
+                                href={`http://monitoring.local/${server}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#1890ff', textDecoration: 'none', fontSize: '12px' }} // Define o tamanho dos links
+                            >
+                                {server}
+                            </a>
+                            ))}
+                        </span>
+                        ) : (
+                        <p style={{ fontSize: '12px' }}>Nenhum servidor crítico no momento.</p>
+                    )}
+                    
+                </div>
+
             </div>
         </div>
     );

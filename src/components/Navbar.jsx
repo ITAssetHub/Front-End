@@ -47,17 +47,6 @@ const Barra_de_Navegacao = () => {
                 <Container fluid className="d-flex align-items-center justify-content-start">
                     <Navbar.Toggle><img src='./src/assets/Expand_Tab.png'/></Navbar.Toggle>
                     <Navbar.Brand><h1 className='logo-navbar m-0'> <img src=".\src\assets\logo.png" alt="Logo" id="logo" /> ASSET HUB</h1></Navbar.Brand>
-                    <p className='m-0'>Organização: </p>
-                    <DropdownButton
-                        align="end"
-                        title="Qualquer Organização"
-                        id="organizacoes"
-                        data-bs-theme="bege"
-                    >
-                        <Dropdown.Item eventKey="1">Qualquer Organização</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Dropdown.Item eventKey="4">CEUB Taguatinha ||</Dropdown.Item>
-                    </DropdownButton>
                     <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-false`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-false`}

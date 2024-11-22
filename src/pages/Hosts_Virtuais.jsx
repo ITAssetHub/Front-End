@@ -7,6 +7,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import "../css/hosts_virtuais.css";
 import { useQuery } from 'react-query';
 import { listarHosts } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 function Hosts_Virtuais() {
     return (
@@ -24,6 +25,7 @@ function Hosts_Virtuais() {
 const Tabela = () => {
     const [selectAll, setSelectAll] = useState(false);
     const [checkboxes, setCheckboxes] = useState([]);
+    const navigate = useNavigate();
 
     const { data, isLoading, error } = useQuery(
         "query-hosts",
@@ -82,8 +84,10 @@ const Tabela = () => {
         }).replace(',', ''); // Remove a vírgula
     };
 
-    const hostDetails = () => {
-        window.location.href = '/host-details';
+    const hostDetails = (uuid) => {
+        console.log("Hosts Virtuais: " + uuid)
+
+        navigate('/host-details', { state: { uuid } });
     };
 
     return (
@@ -109,7 +113,6 @@ const Tabela = () => {
                 {data.map((host, index) => {
                     // Formatar a data
                     const formattedDate = host.last_report_date ? formatDate(host.last_report_date) : "--";
-
                     return (
                         <tr key={host.uuid}> {/* Use UUID como key para evitar duplicatas */}
                             <td>
@@ -127,7 +130,7 @@ const Tabela = () => {
                             <td className='descricao'>
                                 <span className='texto'>{host.description || "--"}</span>
                                 <div className='button-table'>
-                                    <Button className='button-tabela' variant="secondary" onClick={hostDetails}>
+                                    <Button className='button-tabela' variant="secondary" onClick={() => hostDetails(host.uuid)}>
                                         <FontAwesomeIcon icon={faChevronRight} className='button-icon' />
                                     </Button>
                                 </div>
@@ -138,6 +141,6 @@ const Tabela = () => {
             </tbody>
         </Table>
     );
-}
+} 
 
 export default Hosts_Virtuais;
