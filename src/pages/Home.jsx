@@ -7,9 +7,10 @@ import Grafico_Sistemas_Operacionais from '../components/Grafico_Sistemas_Operac
 import Grafico_Servidores from '../components/Grafico_Servidores';
 import Grafico_Servidores_Ambiente from '../components/Grafico_Servidores_Ambiente';
 import { useQuery } from "react-query";
-import { listarHosts, qtdHardware } from '../api';
+import { listarHosts, qtdHardware, getMediaCpu } from '../api';
 import { qtdLinux, qtdWindows, totalServidoresVirtuais } from '../services/servidoresService';
 import CPUsageDashboard from '../components/CPU_Usage_Dashboard';
+import HostsDropdown from '../components/HostsDropDown';
 
 function Home() {
 
@@ -52,9 +53,17 @@ function Home() {
         }
     );
 
-    const lowUsageServers = ['Server3', 'Server6', 'Server9'];
-    const attentionServers = ['Server2', 'Server5', 'Server7', 'Server10'];
-    const criticalServers = ['Server1', 'Server4', 'Server8'];
+    const { data: data_cpu } = useQuery(
+        "query-dashboard",
+        getMediaCpu,
+        {
+            retry: 5,
+            refetchInterval: 120000,
+        }
+    );
+
+    console.log(data_cpu?.MEMORY_MEAN)
+
 
     return (
         <div className='home'>
@@ -109,38 +118,26 @@ function Home() {
                 </div>
             </div>
 
-            <div>
-
-                <div style={{justifyContent: 'center', textAlign: 'center'}}>
-
-                    <CPUsageDashboard lowUsageServers={lowUsageServers}
-                        attentionServers={attentionServers}
-                        criticalServers={criticalServers}
-                    />
-
-                    <h6 style={{justifyContent: 'center', textAlign: 'center'}}>Servidores Críticos:</h6>
-
-                    {criticalServers.length > 0 ? (
-                        <span style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', marginBottom: '20px' }}>
-                            {criticalServers.map((server, index) => (
-                            <a
-                                key={index}
-                                href={`http://monitoring.local/${server}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ color: '#1890ff', textDecoration: 'none', fontSize: '12px' }} // Define o tamanho dos links
-                            >
-                                {server}
-                            </a>
-                            ))}
-                        </span>
-                        ) : (
-                        <p style={{ fontSize: '12px' }}>Nenhum servidor crítico no momento.</p>
+            <div className='graficos'>
+                <div className='dashboard-graph'>
+                    <h4>Média de Uso de CPU</h4>
+                    {data_cpu?.MEMORY_MEAN ? (
+                        <CPUsageDashboard memoryMeans={data_cpu?.MEMORY_MEAN} />
+                    ) : (
+                        <div>Carregando dados do gráfico...</div>
                     )}
-                    
                 </div>
 
+                <div className='dashboard-dropdowns'>
+                    <h4>Hosts e sua situação</h4>
+                    {data_cpu?.HOSTS ? (
+                        <HostsDropdown hosts={data_cpu.HOSTS} />
+                    ) : (
+                        <div>Carregando lista de hosts...</div>
+                    )}
+                </div>
             </div>
+
         </div>
     );
 }

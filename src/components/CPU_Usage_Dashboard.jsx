@@ -1,44 +1,43 @@
-import * as echarts from 'echarts';
-import React, { useEffect, useRef } from 'react';
+import * as echarts from "echarts";
+import React, { useEffect, useRef } from "react";
 
-// Componente reutilizável
-const CPUUsageChart = ({ lowUsageServers, attentionServers, criticalServers }) => {
+const CPUsageDashboard = ({ memoryMeans }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
     if (!chartRef.current) return;
 
-    // Inicializa o gráfico ECharts
     const myChart = echarts.init(chartRef.current);
 
-    // Dados para o gráfico
-    const dataAxis = ['Sem Risco', 'Atenção', 'Crítico'];
-    const data = [lowUsageServers.length, attentionServers.length, criticalServers.length];
-    const barColors = ['#52c41a', '#faad14', '#ff4d4f']; // Cores para as categorias
+    const barColors = memoryMeans.map((value) => {
+      if (value < 50) return "#52c41a"; // Verde
+      if (value < 90) return "#faad14"; // Amarelo
+      return "#ff4d4f"; // Vermelho
+    });
 
-    // Opções do gráfico
     const option = {
       title: {
-        text: 'Monitoramento de Uso de CPU',
-        subtext: 'Quantidade de servidores por estado',
-        left: 'center',
+        text: "Monitoramento de Uso de CPU",
+        subtext: "Média por Hora",
+        left: "center",
       },
       xAxis: {
-        data: dataAxis,
+        data: memoryMeans.map((_, index) => `Hora ${index + 1}`),
         axisLabel: {
-          color: '#333',
+          color: "#333",
+          rotate: 45,
         },
         axisTick: {
           show: false,
         },
         axisLine: {
           lineStyle: {
-            color: '#aaa',
+            color: "#aaa",
           },
         },
       },
       yAxis: {
-        max: Math.max(...data) + 2, // Ajusta o eixo Y para acomodar os valores
+        max: 100,
         axisLine: {
           show: false,
         },
@@ -46,56 +45,44 @@ const CPUUsageChart = ({ lowUsageServers, attentionServers, criticalServers }) =
           show: false,
         },
         axisLabel: {
-          color: '#999',
+          color: "#999",
         },
       },
       series: [
         {
-          type: 'bar',
+          type: "bar",
+          data: memoryMeans,
           itemStyle: {
             color: (params) => barColors[params.dataIndex],
           },
-          data: data,
         },
       ],
+      tooltip: {
+        trigger: "axis",
+        formatter: (params) => {
+          const { data, name } = params[0];
+          return `${name}: ${data.toFixed(2)}%`;
+        },
+      },
     };
 
-    // Renderiza o gráfico
     myChart.setOption(option);
 
-    // Limpeza ao desmontar o componente
     return () => {
-      myChart.dispose();
+      myChart.dispose(); // Limpeza ao desmontar
     };
-  }, [lowUsageServers, attentionServers, criticalServers]);
+  }, [memoryMeans]);
 
   return (
     <div
+      ref={chartRef}
       style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        paddingTop: '50px',
+        width: "400px",
+        height: "400px",
+        margin: "0 auto",
       }}
-    >
-      <div
-        ref={chartRef}
-        style={{
-          width: '400px',
-          height: '400px', // Define o tamanho do gráfico
-        }}
-      ></div>
-      <div
-        style={{
-          width: '400px', // Mesma largura que o gráfico
-          textAlign: 'center', // Centraliza o texto
-          fontSize: '15px', // Deixa o texto menor
-        }}
-      >
-      </div>
-    </div>
+    />
   );
 };
 
-export default CPUUsageChart;
+export default CPUsageDashboard;

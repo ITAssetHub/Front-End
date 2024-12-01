@@ -73,7 +73,18 @@ const attDescHost = async (uuid, desc) => {
     }
 };
 
+const getMediaCpu = async () => {
+    try {
+        const response = await axios.get(baseUrl + 'dashboard/memory_info');
+        return response.data;
+        console.log("Média" + response)
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        throw error;
+    }
+};
+
 
 export {
-    listarHosts, qtdHardware, qtdServidores, getHost, attDescHost
+    listarHosts, qtdHardware, qtdServidores, getHost, attDescHost, getMediaCpu
 }

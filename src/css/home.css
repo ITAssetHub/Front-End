@@ -36,7 +36,7 @@
     padding: 32px;
 }
 
-.valor{
+.valor {
     font-size: 50px;
 }
 
@@ -66,12 +66,18 @@
 }
 
 .graficos {
-    display: flex;
-    flex-direction: row-reverse;
-    position: relative;
-    justify-content: center;
+    display: flex; /* Flex para posicionar os itens lado a lado */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    gap: 20px; /* Adiciona um pequeno espaço entre o gráfico e os dropdowns */
     margin-top: 32px;
-    gap: 2em;
+}
+
+.dashboard-dropdowns {
+    display: flex;
+    flex-direction: column; /* Organiza os dropdowns em coluna */
+    gap: 10px; /* Adiciona espaçamento entre os dropdowns */
+    align-items: flex-start; /* Alinha os dropdowns à esquerda */
 }
 
 .graficos > div {
@@ -101,4 +107,15 @@
     padding-bottom: 0; /* Reduz o espaçamento inferior do h4 */
     margin-bottom: 0; /* Reduz a margem inferior do h4 */
     margin-top: 0; /* Remove a margem superior do h4 */
+}
+
+@media (max-width: 768px) {
+    .graficos {
+        flex-direction: column; /* Alinha os itens na vertical em telas pequenas */
+        gap: 20px;
+    }
+
+    .dashboard-dropdowns {
+        align-items: center; /* Centraliza os dropdowns no celular */
+    }
 }
