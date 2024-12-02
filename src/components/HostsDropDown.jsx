@@ -26,7 +26,7 @@ const HostsDropdown = ({ hosts }) => {
         }}
         onClick={() => toggleDropdown(type)}
       >
-        {type} Hosts
+        {type} Hosts ({data.length})
       </button>
       {isOpen === type && (
         <div
@@ -54,7 +54,7 @@ const HostsDropdown = ({ hosts }) => {
               }}
               onClick={() => {
                 hostDetails(host[0]);
-                setIsOpen(null); // Fecha o dropdown ao clicar
+                setIsOpen(null);
               }}
             >
               {host[1]} - {host[2].toFixed(2)}%

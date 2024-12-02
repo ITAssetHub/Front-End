@@ -129,7 +129,7 @@ function Home() {
                 </div>
 
                 <div className='dashboard-dropdowns'>
-                    <h4>Hosts e sua situação</h4>
+                    <h4>Status de Hosts</h4>
                     {data_cpu?.HOSTS ? (
                         <HostsDropdown hosts={data_cpu.HOSTS} />
                     ) : (
