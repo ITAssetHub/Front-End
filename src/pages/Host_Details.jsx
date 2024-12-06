@@ -113,8 +113,8 @@ function Host_Details() {
 
                 <div className='middle-part'>
                     <Tabela_Details data={data1} />
-                    <Grafico_CPU_Usage data={data?.INFO?.CPU_DATA?.cpu_usage_percent_history} />
-                    <Grafico_Memoria_Usage data={data?.INFO?.MEMORY_DATA?.memory_usage_percent} />
+                    <Grafico_CPU_Usage data={data?.CPU_DATA?.cpu_usage_percent_history} />
+                    <Grafico_Memoria_Usage data={data?.MEMORY_DATA?.memory_usage_percent_history} />
                 </div>
 
                 <div className="bottom-part">
