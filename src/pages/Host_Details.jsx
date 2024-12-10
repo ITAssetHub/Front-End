@@ -189,15 +189,15 @@ const Tabela2 = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
-                {data.map((inter, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>{inter?.Interface}</td>
-                            <td>{" -- "}</td>
-                            <td>{" -- "}</td>
+                {data.map((inter, index) => (
+                    inter.Interface_Data.map((addr, addrIndex) => (
+                        <tr key={`${index}-${addrIndex}`}>
+                            <td>{addrIndex === 0 ? inter.Interface : ""}</td>
+                            <td>{addr.address || " -- "}</td>
+                            <td>{addr.netmask || " -- "}</td>
                         </tr>
-                    );
-                })}
+                    ))
+                ))}
             </tbody>
         </Table>
     );
